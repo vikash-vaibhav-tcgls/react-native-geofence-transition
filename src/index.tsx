@@ -17,6 +17,41 @@ const GeoTransition = NativeModules.GeoTransition
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return GeoTransition.multiply(a, b);
+export enum GeofenceEvent {
+  ENTRY = 'entry',
+  EXIT = 'exit',
+}
+
+export type NotificationType = {
+  title: string;
+  text: string;
+  deeplinkUrl?: string;
+  iconName: string;
+};
+
+export type GeofenceProps = {
+  latitude: number;
+  longitude: number;
+  radius: number;
+  /**
+   *  @expireDuration  = -1 for forever
+   */
+  expireDuration: number;
+  event: GeofenceEvent;
+  geoRequestId: string;
+  notificationContent: NotificationType;
+};
+
+export function registerGeofenceNotification(
+  config: GeofenceProps
+): Promise<string> {
+  return GeoTransition.registerGeofenceNotification(config);
+}
+
+export function removeRegisteredGeofence(requestId: string): Promise<string> {
+  return GeoTransition.removeRegisteredGeofence(requestId);
+}
+
+export function removeAllRegisteredGeofence(): Promise<string> {
+  return GeoTransition.removeAllRegisteredGeofence();
 }
