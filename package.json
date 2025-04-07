@@ -2,6 +2,7 @@
   "name": "react-native-geo-transition",
   "version": "0.1.0",
   "description": "geofence notification",
+  "private": true,
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
